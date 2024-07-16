@@ -6,7 +6,7 @@ git branch -M main
 git remote add origin https://github.com/datash0ck/DataEngineering_projects.git
 git push -u origin main
 
---Business Report: Film Monthly Revenue and Total Rentals Report
+## Business Report: Film Monthly Revenue and Total Rentals Report
 --This business report is for providing a large-scale insight from a monthly and yearly perspective to show a performance summary for total rentals and revenue that will be refreshed on a monthly basis to track trends for stakeholders and to be used for data analysis.
 --The data being used in this ETL process is from the DVD Rental database using the pgAdmin management tool with PostgreSQL.
 --There are 15 tables in the dataset and I will be using 2 of them; the payment table and the rental table.
@@ -23,7 +23,7 @@ git push -u origin main
 --total_rentals	INT
 --total_revenue	DECIMAL(8,2)
  
---Code to Create Detailed and Summary Tables
+## Code to Create Detailed and Summary Tables
  
 --detailed table creation
 CREATE TABLE detailed_table(
@@ -38,9 +38,9 @@ CREATE TABLE summary_table(
     total_rentals INT
     total_revenue DECIMAL(8,2));
  
---Custom Function Code
+## Custom Function Code
  
---create function for tranforming rental_date format from DATE to TEXT to show the month and year for monthly reports E.g., 'July 2023'
+--create function for transforming rental_date format from DATE to TEXT to show the month and year for monthly reports E.g., 'July 2023'
 CREATE OR REPLACE FUNCTION format_rental_month(rental_date DATE) 
    RETURNS TEXT 
    AS 
@@ -50,7 +50,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
  
---Query to Extract Data for Detailed Table
+## Query to Extract Data for Detailed Table
  
 --query and left join payment table to rental table to extract data for detailed_table
 INSERT INTO detailed_table (rental_id, customer_id, rental_date, amount)
@@ -64,7 +64,7 @@ FROM
 JOIN 
     payment p ON r.rental_id = p.rental_id;
  
---Code to Create a Function and Trigger for Updating Summary Table
+## Code to Create a Function and Trigger for Updating Summary Table
  
 --create the trigger function
 CREATE OR REPLACE FUNCTION update_summary_table() 
@@ -86,7 +86,7 @@ AFTER INSERT ON detailed_table
    FOR EACH ROW
 EXECUTE FUNCTION update_summary_table();
  
---Code for Stored Procedure to Refresh Data
+## Code for Stored Procedure to Refresh Data
  
 --create a stored procedure to refresh data on monthly basis for business reporting
 CREATE OR REPLACE PROCEDURE refresh_data()
@@ -119,6 +119,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
   
---Job Scheduling Tool
+## Job Scheduling Tool
 --Tool: pg_cron
 --Usage: will be used to schedule and refresh the data using the refresh_data() procedure command to be ran monthly basis.
