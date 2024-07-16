@@ -12,16 +12,16 @@ git push -u origin main
 --There are 15 tables in the dataset and I will be using 2 of them; the payment table and the rental table.
 --Custom Function Purpose: I changed the rental_date column in the rental table from a standard DATE format to TEXT data type to show the month and year to reflect the total rentals and revenue by month for ease of business purpose analysis.
  
---Detailed Table:
-rental_id	INT
-rental_date	DATE
-customer_id	INT
-amount	DECIMAL(6,2)
+--Detailed Table View:
+--rental_id	INT
+--rental_date	DATE
+--customer_id	INT
+--amount	DECIMAL(6,2)
 
---Summary Table:
-month	INT PRIMARY KEY
-total_rentals	INT
-total_revenue	DECIMAL(8,2)
+--Summary Table View:
+--month	INT PRIMARY KEY
+--total_rentals	INT
+--total_revenue	DECIMAL(8,2)
  
 --Code to Create Detailed and Summary Tables
  
